@@ -5,17 +5,25 @@
         <geo id="entaku_table" type="Cylinder" param="8 8 0.3 40" />
         <geo id="entaku_pole" type="Cylinder" param="1 1 5 40" />
 
-		<mtl id="video_mtl" type="MeshBasic" param="color: #fff; map: #video_texture;" />
-		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300; map: #entaku_table_texture;" />
+		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300;;" />
 		<import>
-			<video id="myVideo" autoplay>
-				<source src="" />
-				<source src="" />
-			</video>
-			<canvas></canvas>
+			<video id="video1" class="videos" autoplay></video>
+			<video id="video2" class="videos" autoplay></video>
+			<video id="video3" class="videos" autoplay></video>
+			<video id="video4" class="videos" autoplay></video>
+
+			<video id="video5" class="videos" autoplay></video>
+			<video id="video6" class="videos" autoplay></video>
+			<video id="video7" class="videos" autoplay></video>
+			<video id="video8" class="videos" autoplay></video>
+
+			<video id="video9" class="videos" autoplay></video>
+			<video id="video10" class="videos" autoplay></video>
+			<video id="video11" class="videos" autoplay></video>
+			<video id="video12" class="videos" autoplay></video>
+
+
 		</import>
-		<txr id="video_texture" video="video:first" param="" />
-    <txr id="entaku_table_texture" src="entaku.jpg" param="" onLoad=""/>
 
 		<rdr frame="body" camera="camera:first" param="antialias: true; clearColor: #fff;"/>
 	</head>

@@ -10,6 +10,7 @@ jThree( function( j3 ) {
 	var y= 0;
 	var z = 0;
 	var r = 10;
+	var i = 1;
 	for(degree = 0; degree < 360; degree+=30){
 	    var obj_degree = -degree;
 	    console.log(obj_degree);
@@ -22,9 +23,16 @@ jThree( function( j3 ) {
     	    j3("#camera").css("position",x+' '+y+' '+z);
     	    console.log(j3("camera").css("position"));
     	}
-	    scene.append('<mesh id="" class="face" geo="#plain_geo" mtl="#video_mtl" style="position: '+x+' '+y+' '+z+'; rotateY: '+obj_degree+'; scaleX: 0.01;"></mesh>');
+
+	    var texture = j3('<txr id="video_texture'+i+'" video="#video'+i+'" param="" />');
+	    j3("head").append(texture);
+	    var material = j3('<mtl id="video_mtl'+i+'" type="MeshBasic" param="color: #fff; map: #video_texture'+i+';" />')
+	    j3("head").append(material);
+
+	    scene.append('<mesh id="" class="face" geo="#plain_geo" mtl="#video_mtl'+i+'" style="position: '+x+' '+y+' '+z+'; rotateY: '+obj_degree+'; scaleX: 0.01;"></mesh>');
+	    i++;
 	}
-	
+
     j3(".face").on("click",function(){
 
     });
@@ -51,8 +59,8 @@ j3("body").on("keyup",function(e){
 			break;
 		}
 });
-    
-    
+
+
 
 
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -70,10 +78,10 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext || window
         var frequencyData = new Uint8Array(analyser.frequencyBinCount);
         var timeDomainData = new Uint8Array(analyser.frequencyBinCount);
         mediastreamsource.connect(analyser);
-        
+
         var count = 0;
         var analyzeVoice = function(){
-        	analyser.getByteFrequencyData(frequencyData);        
+        	analyser.getByteFrequencyData(frequencyData);
         	var sum = 0;
         	for(var i = 0; i < frequencyData.length; i++){
         	    sum +=frequencyData[i]
@@ -88,7 +96,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext || window
             window.requestAnimationFrame(analyzeVoice);
         }
         var importHTML = jThree( "import" ).contents();
-        var myVideo = importHTML.find("#myVideo")[0];
+        var myVideo = importHTML.find("#video1")[0];
         myVideo.src = window.URL.createObjectURL(localMediaStream);
         analyzeVoice();
 
@@ -101,8 +109,8 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext || window
            success,
            error
     );
-    
-    
+
+
 
 },
 function() {
