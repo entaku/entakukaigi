@@ -20,6 +20,12 @@ module Static
       halt MultiJson.dump(members)
     end
 
+    delete "/api/rooms_users/:id" do
+      # content_type HTTPHelper::CONTENT_TYPE_JSON
+      $redis.srem(room_key(params[:id]), params[:user_id])
+      halt ""
+    end
+
     private
 
       def room_key(room_id)

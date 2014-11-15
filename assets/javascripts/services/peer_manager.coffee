@@ -19,7 +19,6 @@ class @PeerManager
       @peer.destroy()
     @peer.on "error", (error) ->
       console.log "peer on error", error
-      sendError error if sendError
     @peer.on "call", (call) =>
       console.log "peer on call", call
       # @closeRemote()
@@ -56,7 +55,6 @@ class @PeerManager
             @_setRemoteConnection @myCalls[id], id
     , (error) ->
       console.error "getUserMedia err", error
-      sendError error if sendError
 
   _setRemoteConnection: (call, id = null) ->
     console.log "_setRemoteConnection", call, id
@@ -71,8 +69,11 @@ class @PeerManager
       $remoteVideo[0].play()
     call.on "close", ->
       console.log "_setRemoteConnection on close", call
+      userId = call.peer
+      delete @myCalls[userId]
       URL.revokeObjectURL $remoteVideo.attr("src")
       $remoteVideo.remove()
+      @_deletePeer userId
 
   _getTargetIDs: (fn) ->
     url = "/api/rooms_users/#{@roomId}"
@@ -81,5 +82,13 @@ class @PeerManager
       fn(data) if data && fn
     ).fail((error) ->
       console.log error
-      sendError error if sendError
     )
+
+  _deletePeer: (id) ->
+    url = "/api/rooms_users/#{@roomId}"
+    $.ajax(
+      url: url
+      data: {user_id: id}
+      method: "delete"
+    )
+    .done -> console.log "_deletePeer", id
