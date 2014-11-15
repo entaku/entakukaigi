@@ -1,0 +1,33 @@
+/* banner ================================================== */
+.bannerContact {
+  width: 980px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  background-image: image-url("base/shop-bg.jpg");
+  height: 100px;
+  position: relative;
+  border: 1px solid #ccc;
+}
+
+.bannerCbtn {
+  position: absolute;
+  top: 20px;
+  left: 500px;
+}
+
+.bannerWrap {
+  margin: 30px 0px;
+}
+
+.bannerS {
+  width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  img {
+    border: 1px solid #ccc;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+}

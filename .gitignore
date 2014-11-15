@@ -5,7 +5,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -40,4 +41,19 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Ignore bundler config.
+/.bundle
 
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/test*
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/log/*.log.*
+/tmp
+
+/.sass-cache
+/doc
+/coverage
+/assets/vendor

@@ -1,0 +1,92 @@
+/* footer ================================================== */
+
+#footerWrap {
+  clear: both;
+  background: #efefef;
+ /**background:#fff8f8;**/
+  min-width: 1060px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+ /**border-top:#ccc solid 1px;**/
+  margin-top: 80px;
+}
+
+.flSLink {
+  width: 980px;
+  margin: 0px auto 0 auto;
+  padding: 25px 0 25px 0;
+}
+
+.flSLink {
+/**border-bottom: #d2cec5 1px dotted;**/;
+}
+
+.flSLink dl {
+  float: left;
+  width: 196px;
+}
+
+.flSLink dt {
+  margin: 0 0 10px 0;
+  padding-left: 8px;
+  font-weight: bold;
+  background: image-url("base/f-list.png") no-repeat;
+}
+
+.flSLink dd {
+  margin: 5px 0 0 0;
+  padding-left: 8px;
+}
+
+.flSLink  a {
+  font-size: 84%;
+  color: #333;
+}
+
+.flSLink dd a:hover {
+  padding-bottom: 1px;
+}
+
+.flSMenu {
+  clear: both;
+  padding: 20px 0px;
+}
+
+.flSMenu ul div {
+  width: 980px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.flSMenu div {
+  text-align: center;
+}
+
+.flSMenu ul {
+  font-size: 84%;
+}
+
+.flSMenu ul li {
+  display: inline;
+  float: none;
+}
+
+.flSMenu li {
+  float: left;
+  padding: 0 10px;
+  border-right: #ccc 1px solid;
+}
+
+.flSMenu li:last-child {
+  border: none;
+}
+
+.flSMenu a {
+  color: #333;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 80%;
+  padding: 20px 0px;
+}

@@ -1,0 +1,62 @@
+// breadcrumbs
+.breadWrap {
+  height: 40px;
+  border-top: 1px solid #ccc;
+  min-width: 1060px;
+  clear: both;
+}
+
+.breadS {
+  width: 980px;
+  margin: 0 auto;
+  ul {
+    line-height: 40px;
+    font-size: 10px;
+    li {
+      display: inline;
+      list-style-type: none;
+      &:before {
+        content: " > ";
+      }
+    }
+    li:first-child:before {
+      content: "";
+    }
+  }
+  li a {
+    color: #333;
+  }
+}
+
+/* breadcrumbs 2================================================== */
+
+.breadWrap2 {
+  height: 30px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px dotted #ccc;
+  min-width: 1060px;
+  clear: both;
+}
+
+.breadS2 {
+  width: 980px;
+  margin: 0 auto;
+  ul {
+    line-height: 40px;
+    font-size: 85%;
+    li {
+      display: inline;
+      list-style-type: none;
+      &:before {
+        content: " > ";
+      }
+    }
+    li:first-child:before {
+      content: "";
+    }
+  }
+  li a {
+    color: #333;
+  }
+}
+

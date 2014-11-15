@@ -1,0 +1,27 @@
+development:
+  worker_processes: 1
+  working_directory: "/opt/sinatra/gsa"
+  listen: "/tmp/gsa.sock"
+  pid: "/tmp/gsa.pid"
+  port: 3002
+
+test:
+  worker_processes: 1
+  working_directory: "/opt/sinatra/gsa"
+  listen: "/tmp/gsa.sock"
+  pid: "/tmp/gsa.pid"
+  port: 3000
+
+staging:
+  worker_processes: 1
+  working_directory: "/opt/sinatra/entaku"
+  listen: "/var/run/entaku/unicorn.sock"
+  pid: "/var/run/entaku/unicorn.pid"
+  port: 8888
+
+production:
+  worker_processes: 4
+  working_directory: "/opt/sinatra/entaku"
+  listen: "/var/run/entaku/unicorn.sock"
+  pid: "/var/run/entaku/unicorn.pid"
+  port: 8888

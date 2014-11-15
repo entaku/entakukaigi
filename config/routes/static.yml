@@ -1,0 +1,4 @@
+root: "/"
+rooms:
+  index: "/rooms"
+  show: "/rooms/%{id}"

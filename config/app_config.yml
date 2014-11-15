@@ -1,0 +1,20 @@
+base: &common
+  redis: &redis
+    namespace: mitemite
+  fluent: &fluent
+    appname: app
+  gtm: "GTM-"
+
+development:
+  <<: *common
+  host: localhost:9292
+  root: "/opt/sinatra/entaku"
+  protocol: "http"
+  redis:
+    <<: *redis
+    host: localhost
+    port: 6379
+  fluent:
+    <<: *fluent
+    host: localhost
+    port: 24224

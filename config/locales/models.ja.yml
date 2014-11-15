@@ -1,0 +1,172 @@
+ja:
+  activerecord:
+    errors:
+      template:
+        header:
+          one:   "%{model}にエラーが発生しました。"
+          other: "%{model}に%{count}つのエラーが発生しました。"
+        body: "次の項目を確認してください。"
+      messages:
+        taken: "はすでに存在します。"
+        record_invalid: "バリデーションに失敗しました。 %{errors}"
+      full_messages:
+        format: "[%{attribute}]%{message}"
+      models:
+        user:
+          attributes:
+            base:
+              restricted:  "制限付きユーザーには許可されていない動作です"
+            company_id:
+              user_not_working_for: "ユーザが所属していない会社です"
+    models:
+      user: ユーザー
+      teacher: 講師
+      category: カテゴリー
+      rooms_message: メッセージ
+      administrator: 管理者
+      page: 静的ページ
+      shop: ショップ
+      shop_owner: ショップ管理者
+      inquiry: お問い合わせ
+      area: "エリア"
+      prefecture: "都道府県"
+      merit: "メリット"
+      industry: "業界"
+      recruitment_information: "求人募集要項"
+    attributes:
+      common: &common
+        created_at: 作成日時
+        updated_at: 更新日時
+      user: &device
+        <<: *common
+        email: E-mail
+        password: パスワード
+        password_confirmation: パスワードの確認
+        sign_in_count: サインイン回数
+        confirmed_at: 登録日時
+        current_sign_in_ip: IP
+      product:
+        <<: *common
+        name: 商品名
+        sku: 商品コード
+        price: 価格
+        fixed_price: 定価
+        status: ステータス
+        status_str: ステータス
+        description: 商品説明
+        material: 素材
+        store_only: 店頭販売のみ
+        backorderable: バックオーダー可能
+      shop:
+        <<: *common
+        name: ショップ名
+        caption: キャプション
+        summary: サマリー
+        minimum_salary: 最低時給
+        maximum_salary: 最高時給
+        experience: 経験
+        shop_hour: 営業時間
+        holiday: 定休日
+        area_id: エリア
+        area: エリア
+        min_salary_per_month: 最低推定月給
+        max_salary_per_month: 最高推定月給
+        pr: PR
+        job_description: 仕事内容
+        tel: 電話番号
+        address: 住所
+        stations: 最寄り駅
+        url: URL
+        industry_id: 業界
+        industry: 業界
+        applicant: 応募
+        recruitment_information: "求人募集要項"
+        plan_id: "プラン"
+        benefit: 体入メリット
+        recruiters_name: 採用担当
+        recruiters_tel: 担当連絡先
+        tel_apply_comment: 電話で応募
+        recruiters_apply_comment: 担当者に直接連絡
+        published: 公開設定
+        archived: アーカイブ設定
+      recruitment_information:
+        <<: *common
+        minimum_salary: 最低時給
+        maximum_salary: 最高時給
+        experience: 経験
+        shop_hour: 営業時間
+        holiday: 定休日
+        min_salary_per_month: 最低推定月給
+        max_salary_per_month: 最高推定月給
+        tel: 電話番号
+        address: 住所
+        stations: 最寄り駅
+        url: URL
+        industry_id: 業界
+        industry: 業界
+        recruitment_information: "求人募集要項"
+        plan_id: "プラン"
+        shop_id: ショップ
+        job_category: 職種
+        qualification: 資格
+        average_age: 平均年齢
+        treatment: 待遇
+        application_method: 応募方法
+        tel: TEL
+        email: メール
+        recruiters_name: 採用担当
+        recruiters_tel: 担当連絡先
+        position: 表示順
+      shop_owner:
+        <<: *device
+        shop_id: ショップ
+      category:
+        <<: *common
+        name: カテゴリー名
+      size:
+        <<: *common
+        name: サイズ名
+      lesson:
+        <<: *common
+        name: レッスン名
+        description: レッスン説明
+        seat: 最大予約人数
+        start_time: 開始時間
+        end_time: 終了時間
+      administrator:
+        <<: *device
+      inquiry:
+        user_id: ユーザー
+        user: ユーザー
+        name: 件名
+        email: E-mail
+        body: お問い合わせ内容
+      page:
+        <<: *common
+        title: タイトル
+        slug: slug
+        body: 内容
+      area:
+        <<: *common
+        name: エリア名
+      prefecture:
+        <<: *common
+        name: 都道府県名
+      merit:
+        <<: *common
+        name: メリット名
+      industry:
+        <<: *common
+        name: 業界名
+      applicant:
+        <<: *common
+        user_id: ユーザー
+        user: ユーザー
+        shop_id: ショップ
+        shop: ショップ
+        default_message: |
+          面接希望日：
+
+          質問等：
+        message: 内容
+        contact_type: ご希望

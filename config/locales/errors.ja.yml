@@ -1,0 +1,24 @@
+ja:
+  errors:
+    # models:
+    #   coordinate:
+    #     attributes:
+    #       item_ids:
+    #         too_many_items: "関連づけられるアイテムは5つまでです"
+    #         not_your_item: "ご自身のアイテムを選択して下さい"
+    messages:
+      expired: "は期限が切れたため、新しく取得する必要があります"
+#      expired: "has expired, please request a new one"
+      not_found: "は見つかりませんでした"
+#      not_found: "not found"
+      already_confirmed: "は既に登録済みです"
+#      already_confirmed: "was already confirmed, please try signing in"
+      not_locked: "は凍結されていません"
+#      not_locked: "was not locked"
+      not_saved:
+        one: "1 つのエラーにより %{resource} は保存されませんでした:"
+#        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} つのエラーにより %{resource} は保存されませんでした:"
+#        other: "%{count} errors prohibited this %{resource} from being saved:"
+      images_not_detected: 画像が見つかりませんでした
+      other_users_using: "この%{provider}アカウントは他のユーザーが既に連携しています"

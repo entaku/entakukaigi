@@ -1,0 +1,139 @@
+/* main navi ================================================== */
+.naviWrap {
+  height: 50px;
+  min-width: 1060px;
+  background-image: image-url("base/main-navi-bg.jpg");
+  width: 100%;
+  clear: both;
+}
+
+#navi {
+  margin: 0 auto;
+  width: 980px;
+}
+
+#navi ul {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  zoom: 100%;
+}
+
+#navi li {
+  float: left;
+}
+
+#navi li a {
+  display: block;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  width: 196px;
+  height: 50px;
+  line-height: 50px;
+  text-indent: -9898px;
+  background-repeat: no-repeat;
+  background-image: image-url("base/main-navi.jpg");
+}
+
+#navi li a.job {
+  background-position: 0px 0px;
+  width: 196px;
+}
+
+#navi li a.job:hover {
+  background-position: 0 -50px;
+}
+
+#navi li a.area {
+  background-position: -196px 0px;
+}
+
+#navi li a.area:hover {
+  background-position: -196px -50px;
+}
+
+#navi li a.train {
+  background-position: -392px 0px;
+}
+
+#navi li a.train:hover {
+  background-position: -392px -50px;
+}
+
+#navi li a.merit {
+  background-position: -588px 0px;
+}
+
+#navi li a.merit:hover {
+  background-position: -588px -50px;
+}
+
+#navi li a.search {
+  background-position: -784px 0px;
+}
+
+#navi li a.search:hover {
+  background-position: -784px -50px;
+}
+
+#sideNav {
+  list-style: none;
+  position: fixed;
+  top: 30%;
+  right: -130px;
+}
+
+#sideNav a:hover {
+  opacity: 0.8;
+  right: -120px;
+}
+
+.subNaviWrap {
+  clear: both;
+  background: #fff;
+  min-width: 1060px;
+  height: 30px;
+  border-bottom: solid 1px #ccc;
+}
+
+.subNavi {
+  clear: both;
+  margin: 0 auto;
+  width: 980px;
+}
+
+.subNavi ul {
+  font-size: 12px;
+  line-height: 20px;
+  list-style: none;
+  padding: 5px 0px;
+}
+
+.subNavi li {
+  float: left;
+  padding: 0 10px;
+  border-right: #ccc 1px solid;
+}
+
+.subNavi li:first-child {
+  border-left: #ddd 1px solid;
+}
+
+.subNavi li a {
+  color: #333;
+}
+
+.keyword {
+  padding-left: 0px !important;
+  border-left: none !important;
+  font-weight: bold;
+  color: #666;
+  font-size: 12px;
+}
+
+.fixed {
+  position: fixed;
+  top: 0px;
+  z-index: 9999;
+}

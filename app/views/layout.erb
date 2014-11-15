@@ -1,0 +1,33 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class='ie ie6' lang='ja'><![endif]-->
+<!--[if IE 7 ]><html class='ie ie7' lang='ja'><![endif]-->
+<!--[if IE 8 ]><html class='ie ie8' lang='ja'><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang='ja'><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title id="title">entaku</title>
+  <%= stylesheet_tag 'application', media: "all" %>
+  <!--[if lt IE 9]>
+    <script src='//html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <script src='//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js'></script>
+  <![endif]-->
+  <meta content="<%= csrf_token %>" name="csrf-token" />
+</head>
+<body id="<%= @body_id ? @body_id : "" %>">
+<div class="main" id="main">
+<%= yield %>
+</div>
+  <!--[if lt IE 9]>
+  <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script><script>
+  //<![CDATA[
+  window.jQuery || document.write('<script src=\"//ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.1.min.js\"><\/script>')
+  //]]>
+  </script>
+  <![endif]-->
+  <!--[if gte IE 9]><!-->
+  <script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+  <script>window.jQuery || document.write('<script src=\"//ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.1.min.js\"><\/script>')</script>
+  <!--<![endif]-->
+  <%= javascript_tag 'application', expand: true, defer: true %>
+</body></html>
