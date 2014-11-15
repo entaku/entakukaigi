@@ -4,9 +4,9 @@
         <geo id="plain_geo" type="Cube" param="3 3 3" />
         <geo id="entaku_table" type="Cylinder" param="8 8 0.3 40" />
         <geo id="entaku_pole" type="Cylinder" param="1 1 5 40" />
-        
+
 		<mtl id="video_mtl" type="MeshBasic" param="color: #fff; map: #video_texture;" />
-		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300;" />
+		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300; map: #entaku_table_texture;" />
 		<import>
 			<video id="myVideo" autoplay>
 				<source src="" />
@@ -15,10 +15,11 @@
 			<canvas></canvas>
 		</import>
 		<txr id="video_texture" video="video:first" param="" />
-		
+    <txr id="entaku_table_texture" src="entaku.jpg" param="" onLoad=""/>
+
 		<rdr frame="body" camera="camera:first" param="antialias: true; clearColor: #fff;"/>
 	</head>
-	
+
 	<body>
 		<scene>
 		<mesh id="entaku_table_mesh" geo="#entaku_table" mtl="#entaku_mtl" style="position: 0 -1 0;"></mesh>
