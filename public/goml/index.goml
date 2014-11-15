@@ -1,0 +1,42 @@
+<goml>
+	<head>
+		<!--<geo id="hoge" type="Sphere" param="12 64 64" />-->
+        <geo id="plain_geo" type="Cube" param="3 3 3" />
+        <geo id="entaku_table" type="Cylinder" param="8 8 0.3 40" />
+        <geo id="entaku_pole" type="Cylinder" param="1 1 5 40" />
+
+		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300; map: #entaku_table_texture;" />
+		<import>
+			<video id="video1" class="videos not-attached" autoplay></video>
+			<video id="video2" class="videos not-attached" autoplay></video>
+			<video id="video3" class="videos not-attached" autoplay></video>
+			<video id="video4" class="videos not-attached" autoplay></video>
+
+			<video id="video5" class="videos not-attached" autoplay></video>
+			<video id="video6" class="videos not-attached" autoplay></video>
+			<video id="video7" class="videos not-attached" autoplay></video>
+			<video id="video8" class="videos not-attached" autoplay></video>
+
+			<video id="video9" class="videos not-attached" autoplay></video>
+			<video id="video10" class="videos not-attached" autoplay></video>
+			<video id="video11" class="videos not-attached" autoplay></video>
+			<video id="video12" class="videos not-attached" autoplay></video>
+
+
+		</import>
+		<txr id="entaku_table_texture" src="/images/entaku.jpg" param="" onLoad=""/>
+		<rdr frame="body" camera="camera:first" param="antialias: true; clearColor: #fff;"/>
+	</head>
+
+	<body>
+		<scene>
+		<mesh id="entaku_table_mesh" geo="#entaku_table" mtl="#entaku_mtl" style="position: 0 -1 0;"></mesh>
+		<mesh id="entaku_pole_mesh" geo="#entaku_pole" mtl="#entaku_mtl" style="position: 0 -4 0;"></mesh>
+
+			<camera id="camera" style="cameraFar: 400; position: 30 15 30; lookAt: 0 0 0;" />
+			<light type="Amb" style="lightColor: #222;" />
+			<light type="Dir" style="position: 1 3 5;" />
+			<light id="" type="Dir" style="position: -1 -3 -5;" />
+		</scene>
+	</body>
+</goml>

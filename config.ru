@@ -19,7 +19,7 @@ require './config/boot.rb'
 
 if ENV['RACK_ENV'] == "development"
   use Rack::Static,
-    urls: ["/fonts", "/images", "/ckeditor_assets", "/base", "/ckeditor"],
+    urls: ["/fonts", "/images", "/goml", "/base", "/ckeditor"],
     root: "public"
 end
 

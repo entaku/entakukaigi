@@ -8,8 +8,9 @@ isRoomPage = ->
   $target && $target.length > 0
 
 setupRoom = ->
-  manager = new PeerManager(ROOM_ID);
+  # renderContent()
+  # manager = new PeerManager(ROOM_ID)
 
 
 $ ->
-  isRoomPage() && setupRoom()
+  # isRoomPage() && setupRoom()
