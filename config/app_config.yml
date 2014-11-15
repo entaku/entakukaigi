@@ -8,7 +8,7 @@ base: &common
 development:
   <<: *common
   host: localhost:9292
-  root: "/opt/sinatra/entaku"
+  root: "./"
   protocol: "http"
   redis:
     <<: *redis
