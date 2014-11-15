@@ -1,10 +1,3 @@
-
-# @renderContent = ->
-#   importHTML = jThree( "import" ).contents()
-#   $("#main").html importHTML
-
-
-
 jThree ((j3) ->
   $("#loading").remove()
   j3.Trackball()
@@ -60,52 +53,10 @@ jThree ((j3) ->
   window.URL = window.URL or window.webkitURL
   window.AudioContext = window.AudioContext or window.webkitAudioContext or window.mozAudioContext or window.msAudioContext
   success = (localMediaStream) ->
-    console.log "success"
-    console.log localMediaStream
-    audioContext = new AudioContext()
-    mediastreamsource = audioContext.createMediaStreamSource(localMediaStream)
-    analyser = audioContext.createAnalyser()
-    frequencyData = new Uint8Array(analyser.frequencyBinCount)
-    timeDomainData = new Uint8Array(analyser.frequencyBinCount)
-    mediastreamsource.connect analyser
-    count = 0
-    analyzeVoice = ->
-      analyser.getByteFrequencyData frequencyData
-      sum = 0
-      i = 0
-
-      while i < frequencyData.length
-        sum += frequencyData[i]
-        i++
-      average = sum / frequencyData.length
-
-      #   if(count == 2){
-      #       average = average / 2;
-      #       j3(".face").animate({scale: average+" "+average+" "+average}, 20);
-      #       count = 0;
-      #   }
-      count++
-      window.requestAnimationFrame analyzeVoice
-      return
-
-    importHTML = jThree("import").contents()
-    # myVideo = importHTML.find("#video1")[0]
-    # myVideo.src = window.URL.createObjectURL(localMediaStream)
-    window.videos = importHTML
-    #.find("video")
-    # analyzeVoice()
-
+    window.importHTML = jThree("import").contents()
     manager = new PeerManager(ROOM_ID)
     return
-
-  error = ->
-    console.log "error"
-    return
-
-  navigator.getUserMedia
-    audio: true
-    video: true
-  , success, error
+  success()
   return
 ), ->
   alert "このブラウザはWebGLに対応していません。"

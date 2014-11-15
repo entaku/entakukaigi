@@ -16,12 +16,12 @@
   <script src="http://viewer.jthree.jp/libs/jthree/2.1/jThree.min.js?0"></script>
   <script src="http://viewer.jthree.jp/libs/stats/1.2/jThree.Stats.js"></script>
   <script src="http://viewer.jthree.jp/libs/trackball/1.4/jThree.Trackball.js"></script>
+  <script type="text/goml" src="/goml/index.goml"></script>
   <meta content="<%= csrf_token %>" name="csrf-token" />
 </head>
 <body id="<%= @body_id ? @body_id : "" %>">
 <div class="main" id="main">
 <%= yield %>
 </div>
-  <script type="text/goml" src="/goml/index.goml"></script>
   <%= javascript_tag 'application', expand: true, defer: true %>
 </body></html>

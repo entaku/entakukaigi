@@ -7,20 +7,20 @@
 
 		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300; map: #entaku_table_texture;" />
 		<import>
-			<video id="video1" class="videos not-attached" autoplay></video>
-			<video id="video2" class="videos not-attached" autoplay></video>
-			<video id="video3" class="videos not-attached" autoplay></video>
-			<video id="video4" class="videos not-attached" autoplay></video>
+			<video id="video1" class="videos1 myvideo" autoplay></video>
+			<video id="video2" class="videos2 not-attached" autoplay></video>
+			<video id="video3" class="videos3 not-attached" autoplay></video>
+			<video id="video4" class="videos4 not-attached" autoplay></video>
 
-			<video id="video5" class="videos not-attached" autoplay></video>
-			<video id="video6" class="videos not-attached" autoplay></video>
-			<video id="video7" class="videos not-attached" autoplay></video>
-			<video id="video8" class="videos not-attached" autoplay></video>
+			<video id="video5" class="videos5 not-attached" autoplay></video>
+			<video id="video6" class="videos6 not-attached" autoplay></video>
+			<video id="video7" class="videos7 not-attached" autoplay></video>
+			<video id="video8" class="videos8 not-attached" autoplay></video>
 
-			<video id="video9" class="videos not-attached" autoplay></video>
-			<video id="video10" class="videos not-attached" autoplay></video>
-			<video id="video11" class="videos not-attached" autoplay></video>
-			<video id="video12" class="videos not-attached" autoplay></video>
+			<video id="video9" class="videos9 not-attached" autoplay></video>
+			<video id="video10" class="videos10 not-attached" autoplay></video>
+			<video id="video11" class="videos11 not-attached" autoplay></video>
+			<video id="video12" class="videos12 not-attached" autoplay></video>
 
 
 		</import>

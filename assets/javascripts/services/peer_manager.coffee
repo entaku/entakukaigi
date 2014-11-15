@@ -43,9 +43,9 @@ class @PeerManager
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     navigator.getUserMedia {video: true, audio: true}, (stream) =>
       console.log "window.videos", window.videos
-      myVideo = window.videos.find "#video1"
-      myVideo[0].src = URL.createObjectURL(stream)
-      myVideo[0].play()
+      myVideo = $(window.importHTML.find(".myvideo"))
+      myVideo.attr
+        src: URL.createObjectURL(stream)
       myVideo[0].muted = true
       myVideo.addClass("attached").removeClass("not-attached")
       window.localStream = stream
@@ -61,19 +61,17 @@ class @PeerManager
   _setRemoteConnection: (call, id = null) ->
     console.log "_setRemoteConnection", call, id
     # remoteVideo = "<video src=\"\"></video>"
-    $remoteVideo = window.videos.find(".not-attached")
+    $remoteVideo = $(window.importHTML.find(".not-attached")[0])
     call.on "stream", (remoteStream) ->
       console.log "_setRemoteConnection on stream", remoteStream
       $remoteVideo.attr
         src: URL.createObjectURL(remoteStream)
         id: id
-      # $("#remote-video-container").append $remoteVideo
-      $remoteVideo[0].play()
       $remoteVideo.addClass("attached").removeClass("not-attached")
     call.on "close", ->
       console.log "_setRemoteConnection on close", call
       userId = call.peer
-      delete @myCalls[userId]
+      # delete @myCalls[userId]
       URL.revokeObjectURL $remoteVideo.attr("src")
       # $remoteVideo.remove()
       $remoteVideo.addClass("not-attached").removeClass("attached")

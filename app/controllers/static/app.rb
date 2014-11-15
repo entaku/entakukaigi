@@ -22,7 +22,9 @@ module Static
 
     delete "/api/rooms_users/:id" do
       # content_type HTTPHelper::CONTENT_TYPE_JSON
-      $redis.srem(room_key(params[:id]), params[:user_id])
+      key = room_key(params[:id])
+      $redis.srem(key, params[:user_id])
+      $redis.del(key) if $redis.scard(key) == 0
       halt ""
     end
 
