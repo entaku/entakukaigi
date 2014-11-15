@@ -8,6 +8,10 @@
 
 #= require_tree ./services
 
+#= require_tree ./media
+
+#= require_tree ./models
+
 #= require .//init
 
 #= require .//app
