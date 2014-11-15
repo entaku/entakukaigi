@@ -5,7 +5,7 @@
         <geo id="entaku_table" type="Cylinder" param="8 8 0.3 40" />
         <geo id="entaku_pole" type="Cylinder" param="1 1 5 40" />
 
-		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300;;" />
+		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300; map: #entaku_table_texture;" />
 		<import>
 			<video id="video1" class="videos" autoplay></video>
 			<video id="video2" class="videos" autoplay></video>
@@ -24,7 +24,7 @@
 
 
 		</import>
-
+		<txr id="entaku_table_texture" src="entaku.jpg" param="" onLoad=""/>
 		<rdr frame="body" camera="camera:first" param="antialias: true; clearColor: #fff;"/>
 	</head>
 
