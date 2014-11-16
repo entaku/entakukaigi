@@ -22,9 +22,7 @@ class @FaceDetector
   switchMasks: ->
     # get mask
     maskname = Object.keys(masks)[@currentMask]
-    #@fd.load document.getElementById(maskname), masks[maskname], pModel
     @fd.load $(window.importHTML.find("#"+maskname))[0], masks[maskname], pModel
-    console.log $(window.importHTML.find("#"+maskname))[0]
     return
   startVideo: ->
     # start tracking
@@ -51,7 +49,7 @@ class @FaceDetector
   drawMaskLoop: ->
     # get position of face
     positions = @ctrack.getCurrentPosition()
-    console.log "pos", positions
+    #console.log "pos", positions
     @overlayCC.clearRect 0, 0, 400, 300
     # draw mask on top of face
     @fd.draw positions if positions

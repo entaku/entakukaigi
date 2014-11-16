@@ -23,14 +23,20 @@ jThree ((j3) ->
       console.log j3("camera").css("position")
     texture = j3("<txr id=\"video_texture" + i + "\" video=\"#video" + i + "\" param=\"\" />")
     j3("head").append texture
-    #texture = j3("<txr id=\"overlay_texture" + i + "\" video=\"#overlay" + i + "\" param=\"\" />")
-    #j3("head").append texture
+    texture = j3("<txr id=\"overlay_texture" + i + "\" canvas=\"#overlay" + i + "\" animation=\"true\" \" param=\"repeat:1;wrap:2;\" />")
+    j3("head").append texture
+    texture = j3("<txr id=\"webgl_texture" + i + "\" canvas=\"#webgl" + i + "\" animation=\"true\" \" param=\"repeat:1;wrap:2;\" />")
+    j3("head").append texture
 
     material = j3("<mtl id=\"video_mtl" + i + "\" type=\"MeshBasic\" param=\"color: #fff; map: #video_texture" + i + ";\" />")
     j3("head").append material
-    material = j3("<mtl id=\"overlay_mtl" + i + "\" type=\"MeshBasic\" param=\"color: #fff; map: #video_texture" + i + ";\" />")
+    material = j3("<mtl id=\"overlay_mtl" + i + "\" type=\"MeshBasic\" param=\"color: #aaa; map: #overlay_texture" + i + ";\" />")
+    j3("head").append material
+    material = j3("<mtl id=\"webgl_mtl" + i + "\" type=\"MeshBasic\" param=\"color: #111; map: #webgl_texture" + i + ";\" />")
     j3("head").append material
     scene.append "<mesh id=\"\" class=\"face\" geo=\"#plain_geo\" mtl=\"#video_mtl" + i + "\" style=\"position: " + x + " " + y + " " + z + "; rotateY: " + obj_degree + "; scaleX: 0.01;\"></mesh>"
+    scene.append "<mesh id=\"\" class=\"face\" geo=\"#plainol_geo\" mtl=\"#overlay_mtl" + i + "\" style=\"position: " + x + " " + y + " " + z + "; rotateY: " + obj_degree + "; scaleX: 0.01;\"></mesh>"
+    scene.append "<mesh id=\"\" class=\"face\" geo=\"#plainwebgl_geo\" mtl=\"#webgl_mtl" + i + "\" style=\"position: " + x + " " + y + " " + z + "; rotateY: " + obj_degree + "; scaleX: 0.01;\"></mesh>"
     i++
     degree += 30
   j3(".face").on "click", ->
