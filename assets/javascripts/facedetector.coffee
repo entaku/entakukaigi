@@ -1,100 +1,70 @@
-enablestart = ->
-  startbutton = document.getElementById("startbutton")
-  startbutton.value = "start"
-  startbutton.disabled = null
-  return
-
-# check whether browser supports webGL
-
-# check for camerasupport
-
-# set up stream
-
-# chrome 19 shim
-updateMask = (el) ->
-  currentMask = parseInt(el.target.value, 10)
-  switchMasks()
-  return
-startVideo = ->
-  
-  # start video
-  vid.play()
-  
-  # start tracking
-  ctrack.start vid
-  
-  # start drawing face grid
-  drawGridLoop()
-  return
-drawGridLoop = ->
-  
-  # get position of face
-  positions = ctrack.getCurrentPosition(vid)
-  overlayCC.clearRect 0, 0, 500, 375
-  
-  # draw current grid
-  ctrack.draw overlay  if positions
-  
-  # check whether mask has converged
-  pn = ctrack.getConvergence()
-  if pn < 0.4
-    switchMasks()
-    requestAnimFrame drawMaskLoop
-  else
-    requestAnimFrame drawGridLoop
-  return
-switchMasks = ->
-  
-  # get mask
-  maskname = Object.keys(masks)[currentMask]
-  fd.load document.getElementById(maskname), masks[maskname], pModel
-  return
-drawMaskLoop = ->
-  
-  # get position of face
-  positions = ctrack.getCurrentPosition()
-  overlayCC.clearRect 0, 0, 400, 300
-  
-  # draw mask on top of face
-  fd.draw positions  if positions
-  animationRequest = requestAnimFrame(drawMaskLoop)
-  return
-vid = document.getElementById("videoel")
-overlay = document.getElementById("overlay")
-overlayCC = overlay.getContext("2d")
-ctrack = new clm.tracker()
-ctrack.init pModel
-webGLContext = undefined
-webGLTestCanvas = document.createElement("canvas")
-if window.WebGLRenderingContext
-  webGLContext = webGLTestCanvas.getContext("webgl") or webGLTestCanvas.getContext("experimental-webgl")
-  webGLContext = null  if not webGLContext or not webGLContext.getExtension("OES_texture_float")
-alert "Your browser does not seem to support WebGL. Unfortunately this face mask example depends on WebGL, so you'll have to try it in another browser. :("  unless webGLContext?
-navigator.getUserMedia = navigator.getUserMedia or navigator.webkitGetUserMedia or navigator.mozGetUserMedia or navigator.msGetUserMedia
-window.URL = window.URL or window.webkitURL or window.msURL or window.mozURL
-if navigator.getUserMedia
-  videoSelector = video: true
-  if window.navigator.appVersion.match(/Chrome\/(.*?) /)
-    chromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10)
-    videoSelector = "video"  if chromeVersion < 20
-  navigator.getUserMedia videoSelector, ((stream) ->
-    if vid.mozCaptureStream
-      vid.mozSrcObject = stream
+class @FaceDetector
+  constructor: (video,overlay,webgl) ->
+    console.log "hgoehogheo"
+    console.log video
+    console.log overlay
+    console.log webgl
+    console.log clm
+    console.log pModel
+    @video = video
+    @ctrack = new clm.tracker()
+    @ctrack.init pModel
+    @fd = new faceDeformer()
+    @fd.init webgl
+    @overlay = overlay
+    @overlayCC = @overlay.getContext("2d")
+    @currentMask = 0
+    @startVideo()
+  @updateMask: (maskNo) ->
+    @currentMask = maskNo
+    @switchMasks()
+    return
+  switchMasks: ->
+    # get mask
+    maskname = Object.keys(masks)[@currentMask]
+    #@fd.load document.getElementById(maskname), masks[maskname], pModel
+    @fd.load $(window.importHTML.find("#"+maskname))[0], masks[maskname], pModel
+    console.log $(window.importHTML.find("#"+maskname))[0]
+    return
+  startVideo: ->
+    # start tracking
+    console.log @ctrack
+    @ctrack.start @video
+    # start drawing face grid
+    @drawGridLoop()
+    return
+  drawGridLoop: ->
+    # get position of face
+    console.log @ctrack
+    positions = @ctrack.getCurrentPosition @video
+    @overlayCC.clearRect 0, 0, 500, 375
+    # draw current grid
+    @ctrack.draw @overlay  if positions
+    # check whether mask has converged
+    pn = @ctrack.getConvergence()
+    if pn < 0.4
+      @switchMasks()
+      requestAnimFrame @drawMaskLoop.bind(this)
     else
-      vid.src = (window.URL and window.URL.createObjectURL(stream)) or stream
-    vid.play()
+      requestAnimFrame @drawGridLoop.bind(this)
     return
-  ), ->
-    alert "There was some problem trying to fetch video from your webcam, using a fallback video instead."
+  drawMaskLoop: ->
+    # get position of face
+    positions = @ctrack.getCurrentPosition()
+    console.log "pos", positions
+    @overlayCC.clearRect 0, 0, 400, 300
+    # draw mask on top of face
+    @fd.draw positions if positions
+    animationRequest = requestAnimFrame(@drawMaskLoop.bind(this))
     return
 
-else
-  alert "Your browser does not seem to support getUserMedia, using a fallback video instead."
-vid.addEventListener "canplay", enablestart, false
-document.getElementById("selectmask").addEventListener "change", updateMask, false
-positions = undefined
-fd = new faceDeformer()
-fd.init document.getElementById("webgl")
+document.addEventListener "clmtrackrIteration", ((event) ->
+), false
+
+
+####################
+#以下マスク情報
+####################
 masks =
   average: [
     [
@@ -2099,9 +2069,3 @@ masks =
     ]
   ]
 
-currentMask = 0
-animationRequest = undefined
-document.addEventListener "clmtrackrIteration", ((event) ->
-
-#stats.update();
-), false

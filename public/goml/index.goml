@@ -7,7 +7,18 @@
 
 		<mtl id="entaku_mtl" type="MeshPhong" param="color: #f00; specular: #fff; ambient: #300; map: #entaku_table_texture;" />
 		<import>
-			<video id="video1" class="videos1 myvideo" autoplay></video>
+			<img id="average" class="masks" src="/images/average.bmp"></img>
+			<img id="monalisa" class="masks" src="/images/joconde.jpg"></img>
+			<img id="ironman" class="masks" src="/images/ironman.jpg"></img>
+			<img id="sean" class="masks" src="/images/SeanConnery.jpg"></img>
+			<img id="skull" class="masks" src="/images/skullmask.jpg"></img>
+			<img id="audrey" class="masks" src="/images/audrey.jpg"></img>
+			<img id="cage2" class="masks" src="/images/cage.jpg"></img>
+
+			<video id="video1" class="videos1 myvideo video" width="400" height="300" autoplay></video>
+			<canvas id="overlay1" class="overlay1 myoverlay overlay" width="400" height="300"></canvas>
+			<canvas id="webgl1" class="webgl1 mywebgl webgl" width="400" height="300"></canvas>
+
 			<video id="video2" class="videos2 not-attached" autoplay></video>
 			<video id="video3" class="videos3 not-attached" autoplay></video>
 			<video id="video4" class="videos4 not-attached" autoplay></video>
@@ -21,8 +32,6 @@
 			<video id="video10" class="videos10 not-attached" autoplay></video>
 			<video id="video11" class="videos11 not-attached" autoplay></video>
 			<video id="video12" class="videos12 not-attached" autoplay></video>
-
-
 		</import>
 		<txr id="entaku_table_texture" src="/images/entaku.jpg" param="" onLoad=""/>
 		<rdr frame="body" camera="camera:first" param="antialias: true; clearColor: #fff;"/>

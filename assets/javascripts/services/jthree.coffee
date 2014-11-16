@@ -23,7 +23,12 @@ jThree ((j3) ->
       console.log j3("camera").css("position")
     texture = j3("<txr id=\"video_texture" + i + "\" video=\"#video" + i + "\" param=\"\" />")
     j3("head").append texture
+    #texture = j3("<txr id=\"overlay_texture" + i + "\" video=\"#overlay" + i + "\" param=\"\" />")
+    #j3("head").append texture
+
     material = j3("<mtl id=\"video_mtl" + i + "\" type=\"MeshBasic\" param=\"color: #fff; map: #video_texture" + i + ";\" />")
+    j3("head").append material
+    material = j3("<mtl id=\"overlay_mtl" + i + "\" type=\"MeshBasic\" param=\"color: #fff; map: #video_texture" + i + ";\" />")
     j3("head").append material
     scene.append "<mesh id=\"\" class=\"face\" geo=\"#plain_geo\" mtl=\"#video_mtl" + i + "\" style=\"position: " + x + " " + y + " " + z + "; rotateY: " + obj_degree + "; scaleX: 0.01;\"></mesh>"
     i++

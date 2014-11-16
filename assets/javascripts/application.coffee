@@ -25,7 +25,7 @@
 #= require .//media/mossefilter.js
 #= require .//media/Stats.js
 #= require .//media/face_deformer.js
-#= require .//facedetector.coffee
+#= require .//facedetector
 
 #= require .//init
 

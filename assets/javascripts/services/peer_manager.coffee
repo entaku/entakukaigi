@@ -44,11 +44,14 @@ class @PeerManager
     navigator.getUserMedia {video: true, audio: true}, (stream) =>
       console.log "window.videos", window.videos
       myVideo = $(window.importHTML.find(".myvideo"))
+      myOverlay = $(window.importHTML.find(".myoverlay"))
+      myWebgl = $(window.importHTML.find(".mywebgl"))
       myVideo.attr
         src: URL.createObjectURL(stream)
       myVideo[0].muted = true
       myVideo.addClass("attached").removeClass("not-attached")
       window.localStream = stream
+      fd = new FaceDetector(myVideo[0], myOverlay[0], myWebgl[0])
       @_getTargetIDs (targetIDs) =>
         if typeof targetIDs != "undefined"
           for id in targetIDs

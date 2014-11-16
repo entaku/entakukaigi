@@ -14,3 +14,34 @@ body {
   height: 100%;
   margin: 0;
 }
+
+.overlay, .webgl {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  -o-transform : scaleX(-1);
+  -webkit-transform : scaleX(-1);
+  transform : scaleX(-1);
+  -ms-filter : fliph; /*IE*/
+  filter : fliph; /*IE*/
+}
+
+#sketch {
+  display: none;
+}
+
+#filter {
+  display: none;
+}
+
+.masks {
+  display: none;
+}
+
+.hide {
+  display : none;
+}
+
+.nohide {
+  display : block;
+}
