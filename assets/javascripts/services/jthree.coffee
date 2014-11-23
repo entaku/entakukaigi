@@ -1,7 +1,6 @@
 jThree ((j3) ->
   $("#loading").remove()
   j3.Trackball()
-  j3.Stats()
   degree = 0
   scene = j3("scene")
   x = 0
@@ -59,7 +58,6 @@ jThree ((j3) ->
         $("#container img").animate
           top: "+=10px"
         , 100
-
   navigator.getUserMedia = navigator.getUserMedia or navigator.webkitGetUserMedia or navigator.mozGetUserMedia or navigator.msGetUserMedia
   window.URL = window.URL or window.webkitURL
   window.AudioContext = window.AudioContext or window.webkitAudioContext or window.mozAudioContext or window.msAudioContext
@@ -68,6 +66,22 @@ jThree ((j3) ->
     manager = new PeerManager(ROOM_ID)
     return
   success()
+
+  milkcocoa = new MilkCocoa("https://io-ni2re3bq2.mlkcca.com:443/")
+  messageDataStore = milkcocoa.dataStore("messages")
+
+  jQuery("#message_area").on "keypress", (e) ->
+    if e.keyCode is 13
+      messageDataStore.push message: jQuery(this).val(), (data)->
+        console.log data
+      jQuery(this).val ""
+    return
+
+  messageDataStore.on "push", (event) ->
+    jQuery("#display_area").append "<p>" + event.value["message"] + "</p>"
+    console.log(event.value)
+    return
+
   return
 ), ->
   alert "このブラウザはWebGLに対応していません。"
