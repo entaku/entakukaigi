@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'sinatra', require: false
 
 ## rails
-rails_version = '~> 4.1.7'
+rails_version = '~> 4.1.8'
 gem 'activerecord', rails_version, require: 'active_record'#, github: 'rails/rails'
 gem 'activesupport', rails_version, require: ['active_support/core_ext', 'active_support/inflector']
 # gem 'actionmailer', rails_version, require: 'action_mailer'
@@ -172,9 +172,9 @@ group :test do
   # gem 'rb-inotify', '~> 0.9',
   #   require: RUBY_PLATFORM =~ /linux/i ? 'rb-inotify' : false
 
-  gem 'guard-rspec'
+  gem 'guard-rspec', require: false
   gem 'spork', '~> 1.0.0rc4'
-  gem 'guard-spork', platforms: :ruby
+  gem 'guard-spork', require: false, platforms: :ruby
 
   # code coverage for tests
   gem 'simplecov', require: false
