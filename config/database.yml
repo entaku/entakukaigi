@@ -13,11 +13,8 @@ default: &default
 #   <<: *default
 #   database: db/development.sqlite3
 development:
-  adapter: postgresql
+  <<: *default
   database: entaku_development
-  encoding: utf8
-  user: postgres
-  min_messages: warning
   pool: 2
   timeout: 5000
   # adapter: mysql2

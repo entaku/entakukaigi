@@ -6,33 +6,26 @@ module Static
       render_html "pages/home"
     end
 
-    get "/rooms/:id" do
-      uuid = UUID.new
-      @room_id = params[:id]
-      @user_id = uuid.generate
-      $redis.sadd room_key(@room_id), @user_id
+    get "/rooms/:id.?:format?" do
+      user = User.new
+      room = Room.new params[:id]
+      @room_id = room.id
+      @user_id = user.id
+      room.add! @user_id
       render_html "rooms/show"
     end
 
-    post "/api/rooms_users/:id" do
+    post "/api/rooms_users/:id.?:format?" do
       content_type HTTPHelper::CONTENT_TYPE_JSON
-      members = $redis.smembers(room_key(params[:id]))
-      halt MultiJson.dump(members)
+      room = Room.new params[:id]
+      halt MultiJson.dump(room)
     end
 
-    delete "/api/rooms_users/:id" do
-      # content_type HTTPHelper::CONTENT_TYPE_JSON
-      key = room_key(params[:id])
-      $redis.srem(key, params[:user_id])
-      $redis.del(key) if $redis.scard(key) == 0
+    delete "/api/rooms_users/:id.?:format?" do
+      room = Room.new params[:id]
+      room.destroy! params[:user_id]
       halt ""
     end
-
-    private
-
-      def room_key(room_id)
-        "rooms:#{room_id}"
-      end
 
   end
 end
