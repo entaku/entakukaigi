@@ -12,12 +12,24 @@ RSpec.describe Static::Api, type: :controller do
     before {
       @room_id = "test"
     }
-    it "should be ok" do
-      get "/rooms/#{@room_id}"
-      expect(last_response).to be_ok
-      room = Room.new @room_id
-      expect(room.members.length).to be > 0
-      room.destroy_all!
+    context "user" do
+      it "should be ok" do
+        get "/rooms/#{@room_id}"
+        expect(last_response).to be_ok
+        room = Room.new @room_id
+        expect(room.members.length).to be > 0
+        room.destroy_all!
+      end
+    end
+
+    context "bot" do
+      it "should be redirect to root" do
+        get "/rooms/#{@room_id}", {}, {'HTTP_USER_AGENT' => 'Google'}
+        expect(last_response).to be_redirect
+        room = Room.new @room_id
+        expect(room.members.length).to be == 0
+        room.destroy_all!
+      end
     end
   end
 

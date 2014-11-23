@@ -36,7 +36,7 @@ module Static
       end
 
       def bot?
-        request.user_agent.match(/bot|spider|facebook|Google|twitter/i)
+        env["HTTP_USER_AGENT"] && env["HTTP_USER_AGENT"].match(/bot|spider|crawler|facebook|google|twitter|baidu/i)
       end
 
   end
