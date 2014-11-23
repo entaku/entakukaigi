@@ -1,5 +1,14 @@
 class Room < Struct.new(:id)
 
+  # get all open room
+  def self.open
+    all "open"
+  end
+
+  def self.all(scope = "")
+    $redis.keys("rooms:#{scope}*")
+  end
+
   def members
     $redis.smembers redis_key
   end

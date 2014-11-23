@@ -1,0 +1,29 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class='ie ie6' lang='ja'><![endif]-->
+<!--[if IE 7 ]><html class='ie ie7' lang='ja'><![endif]-->
+<!--[if IE 8 ]><html class='ie ie8' lang='ja'><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang='ja'><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title id="title">entaku</title>
+  <%= stylesheet_tag 'application', media: "all" %>
+  <!--[if lt IE 9]>
+    <script src='//html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <script src='//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js'></script>
+  <![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://viewer.jthree.jp/libs/jthree/2.1/jThree.min.js?0"></script>
+  <script src="http://viewer.jthree.jp/libs/stats/1.2/jThree.Stats.js"></script>
+  <script src="http://viewer.jthree.jp/libs/trackball/1.4/jThree.Trackball.js"></script>
+
+  <script src="http://cdn.mlkcca.com/v0.2.8/milkcocoa.js"></script>
+
+  <script type="text/goml" src="/goml/index.goml"></script>
+  <meta content="<%= csrf_token %>" name="csrf-token" />
+</head>
+<body id="<%= @body_id ? @body_id : "" %>">
+<div class="main" id="main">
+<%= yield %>
+</div>
+</body></html>

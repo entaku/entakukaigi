@@ -3,10 +3,12 @@ module Static
   class Api < StaticBase
 
     get "/" do
-      render_html "pages/home"
+      @rooms = Room.open
+      render_html "pages/home", layout: :home
     end
 
     get "/rooms/:id.?:format?" do
+      reject_bot!
       user = User.new
       room = Room.new params[:id]
       @room_id = room.id
@@ -26,6 +28,16 @@ module Static
       room.destroy! params[:user_id]
       halt ""
     end
+
+    private
+
+      def reject_bot!
+        bot? && redirect(static_path("root"))
+      end
+
+      def bot?
+        request.user_agent.match(/bot|spider|facebook|Google|twitter/i)
+      end
 
   end
 end

@@ -24,8 +24,8 @@ module StaticHelper
     content_type HTTPHelper::CONTENT_TYPE_TEXT
   end
 
-  def render_html(view_path)
-    erb :"#{view_path}.html", format: "html"
+  def render_html(view_path, options = {})
+    erb :"#{view_path}.html", ({format: "html"}).merge!(options)
   end
 
   def t(*args)
