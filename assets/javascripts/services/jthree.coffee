@@ -82,14 +82,14 @@ class jThreeRenderer extends jThreeRendererBase
     """
     <mtl id="video_mtl#{i}" type="MeshBasic" param="color: #fff; map: #video_texture#{i};" />
     <mtl id="overlay_mtl#{i}" type="MeshBasic" param="color: #000; map: #overlay_texture#{i};" />
-    <mtl id="webgl_mtl#{i}" type="MeshBasic" param="color: #cc0066; map: #webgl_texture#{i};" />
+    <mtl id="webgl_mtl#{i}" type="MeshBasic" param="map: #webgl_texture#{i};" />
     """
 
   _sceneEl: (i, x, y, z, objDegree) ->
     # x = Math.ceil(x)
     # y = Math.ceil(y)
     # z = Math.ceil(z)
-    layerWidth = 0.001
+    layerWidth = 0.00001
     position = "#{x} #{y} #{z}"
     position2 = "#{x + layerWidth} #{y + layerWidth} #{z + layerWidth}"
     # position2 = position

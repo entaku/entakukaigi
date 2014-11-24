@@ -8,6 +8,8 @@
 
 #= require_tree ./services
 
+#= require .//models/masks.js
+
 #= require .//media/dat.gui.min.js
 #= require .//media/utils.js
 #= require .//media/numeric-1.2.6.min.js
