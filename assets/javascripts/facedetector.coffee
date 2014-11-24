@@ -1,17 +1,23 @@
 class @FaceDetector
   constructor: (video,overlay,webgl) ->
-    console.log "hgoehogheo"
-    console.log video
-    console.log overlay
-    console.log webgl
-    console.log clm
-    console.log pModel
+    # console.log "hgoehogheo"
+    # console.log video
+    # console.log overlay
+    # console.log webgl
+    # console.log clm
+    # console.log pModel
     @video = video
     @ctrack = new clm.tracker()
     @ctrack.init pModel
     @fd = new faceDeformer()
+
+    webgl.width = 400
+    webgl.height = 300
+
     @fd.init webgl
     @overlay = overlay
+    @overlay.width = 400
+    @overlay.height = 300
     @overlayCC = @overlay.getContext("2d")
     @currentMask = 0
     @startVideo()
@@ -26,14 +32,14 @@ class @FaceDetector
     return
   startVideo: ->
     # start tracking
-    console.log @ctrack
+    # console.log @ctrack
     @ctrack.start @video
     # start drawing face grid
     @drawGridLoop()
     return
   drawGridLoop: ->
     # get position of face
-    console.log @ctrack
+    # console.log @ctrack
     positions = @ctrack.getCurrentPosition @video
     @overlayCC.clearRect 0, 0, 500, 375
     # draw current grid
@@ -55,13 +61,15 @@ class @FaceDetector
     @fd.draw positions if positions
     animationRequest = requestAnimFrame(@drawMaskLoop.bind(this))
     return
+  # TODO
+  close: ->
 
 document.addEventListener "clmtrackrIteration", ((event) ->
 ), false
 
 
 ####################
-#以下マスク情報
+#ä»¥ä¸‹ãƒžã‚¹ã‚¯æƒ…å ±
 ####################
 masks =
   average: [
@@ -2066,4 +2074,3 @@ masks =
       256.634302341433
     ]
   ]
-
