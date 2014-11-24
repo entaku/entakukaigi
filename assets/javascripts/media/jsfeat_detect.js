@@ -36,6 +36,12 @@ var jsfeat_face = function(image) {
     if (image.tagName == 'VIDEO' || image.tagName == 'IMG') {
       work_ctx.drawImage(image, 0, 0);
     }
+    if (h === 0) {
+      h = 300;
+    }
+    if (w === 0) {
+      w = 400;
+    }
     var imageData = work_ctx.getImageData(0, 0, w, h);
 
     jsfeat.imgproc.grayscale(imageData.data, img_u8.data);

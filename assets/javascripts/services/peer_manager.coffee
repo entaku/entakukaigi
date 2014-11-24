@@ -76,7 +76,7 @@ class @PeerManager
         src: URL.createObjectURL(remoteStream)
         id: id
       $remoteVideo.addClass("attached").removeClass("not-attached")
-      fd = new FaceDetector($remoteVideo[0], $remoteOverlay[0], $remoteWebgl[0])
+      fd = new FaceDetector($remoteVideo[0], $remoteOverlay[0], $remoteWebgl[0], true)
     call.on "close", =>
       # console.log "_setRemoteConnection on close", call
       userId = call.peer

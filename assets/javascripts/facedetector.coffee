@@ -1,23 +1,27 @@
 class @FaceDetector
-  constructor: (video,overlay,webgl) ->
+  constructor: (video, overlay, webgl, remote = false) ->
     # console.log "hgoehogheo"
     # console.log video
     # console.log overlay
     # console.log webgl
     # console.log clm
     # console.log pModel
+    @first = true
+    @remote = remote
+    video.width = 400 if video.width == 0
+    video.height = 300 if video.height == 0
     @video = video
     @ctrack = new clm.tracker()
     @ctrack.init pModel
     @fd = new faceDeformer()
 
-    webgl.width = 400
-    webgl.height = 300
+    webgl.width = video.width
+    webgl.height = video.height
 
     @fd.init webgl
     @overlay = overlay
-    @overlay.width = 400
-    @overlay.height = 300
+    @overlay.width = video.width
+    @overlay.height = video.height
     @overlayCC = @overlay.getContext("2d")
     @currentMask = 0
     @startVideo()
@@ -27,6 +31,7 @@ class @FaceDetector
     return
   switchMasks: ->
     # get mask
+    console.log "switchMasks" if @remote
     maskname = Object.keys(masks)[@currentMask]
     @fd.load $(window.importHTML.find("#"+maskname))[0], masks[maskname], pModel
     return
@@ -35,9 +40,9 @@ class @FaceDetector
     # console.log @ctrack
     @ctrack.start @video
     # start drawing face grid
-    @drawGridLoop()
+    @drawGridLoop(true)
     return
-  drawGridLoop: ->
+  drawGridLoop: (initial = false)->
     # get position of face
     # console.log @ctrack
     positions = @ctrack.getCurrentPosition @video
@@ -46,7 +51,7 @@ class @FaceDetector
     @ctrack.draw @overlay  if positions
     # check whether mask has converged
     pn = @ctrack.getConvergence()
-    if pn < 0.4
+    if pn < 0.4# || (initial && @remote)
       @switchMasks()
       requestAnimFrame @drawMaskLoop.bind(this)
     else
@@ -54,11 +59,18 @@ class @FaceDetector
     return
   drawMaskLoop: ->
     # get position of face
-    positions = @ctrack.getCurrentPosition()
+    positions = @ctrack.getCurrentPosition(@video)
     #console.log "pos", positions
     @overlayCC.clearRect 0, 0, 400, 300
     # draw mask on top of face
-    @fd.draw positions if positions
+    if positions
+      window.firstPosition = positions
+      @fd.draw positions
+      @first = false
+    # if @remote && @first
+    #   console.log "draw"
+    #   @first = false
+    #   @fd.draw window.firstPosition
     animationRequest = requestAnimFrame(@drawMaskLoop.bind(this))
     return
   # TODO
@@ -69,7 +81,7 @@ document.addEventListener "clmtrackrIteration", ((event) ->
 
 
 ####################
-#ä»¥ä¸‹ãƒžã‚¹ã‚¯æƒ…å ±
+#以下マスク情報
 ####################
 masks =
   average: [
