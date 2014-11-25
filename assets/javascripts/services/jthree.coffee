@@ -113,7 +113,9 @@ jThree ((j3) ->
 
   query = messageDataStore.query().limit(10).sort('desc').done((list)->
     _.each list.reverse(), (data)->
-      jQuery("#display_area").append "<p>" + data["message"] + "</p>"
+      p = jQuery "<p></p>"
+      p.text data["message"]
+      jQuery("#display_area").append p
   )
 
 
@@ -128,7 +130,9 @@ jThree ((j3) ->
 
   messageDataStore.on "push", (event) ->
     jQuery("#display_area p").remove()  if jQuery("#display_area p").size() > 10
-    jQuery("#display_area").append "<p>" + event.value["message"] + "</p>"
+    p = jQuery "<p></p>"
+    p.text event.value["message"]
+    jQuery("#display_area").append p
     return
 
 ), ->
