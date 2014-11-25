@@ -111,7 +111,7 @@ jThree ((j3) ->
   milkcocoa = new MilkCocoa("https://io-ni2re3bq2.mlkcca.com:443/")
   messageDataStore = milkcocoa.dataStore("messages")
 
-  query = messageDataStore.query().limit(10).sort('desc').done((list)->
+  query = messageDataStore.query().limit(20).sort('desc').done((list)->
     _.each list.reverse(), (data)->
       p = jQuery "<p></p>"
       p.text data["message"]
@@ -129,7 +129,7 @@ jThree ((j3) ->
     return
 
   messageDataStore.on "push", (event) ->
-    jQuery("#display_area p").remove()  if jQuery("#display_area p").size() > 10
+    jQuery("#display_area p:first").remove()  if jQuery("#display_area p").size() > 10
     p = jQuery "<p></p>"
     p.text event.value["message"]
     jQuery("#display_area").append p
