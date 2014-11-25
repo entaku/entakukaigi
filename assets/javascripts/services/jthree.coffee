@@ -78,6 +78,7 @@ jThree ((j3) ->
     return
 
   messageDataStore.on "push", (event) ->
+    jQuery("#display_area p").remove()  if jQuery("#display_area p").size() > 10
     jQuery("#display_area").append "<p>" + event.value["message"] + "</p>"
     console.log(event.value)
     return
