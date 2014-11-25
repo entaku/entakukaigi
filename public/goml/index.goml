@@ -16,43 +16,51 @@
 			<img id="skull" class="masks" src="/images/skullmask.jpg"></img>
 			<img id="audrey" class="masks" src="/images/audrey.jpg"></img>
 			<img id="cage2" class="masks" src="/images/cage.jpg"></img>
-			<video id="video1" class="videos1 myvideo video" width="400" height="300" autoplay></video>
+			<video id="video1" class="videos1 myvideo video" width="400" height="300" data-id="1" autoplay></video>
 			<canvas id="overlay1" class="overlay1 myoverlay overlay" width="400" height="300"></canvas>
 			<canvas id="webgl1" class="webgl1 mywebgl webgl" width="400" height="300"></canvas>
 
-			<video id="video2" class="videos2 not-attached" autoplay></video>
-			<canvas id="overlay2" class="overlay2 overlay" width="400" height="300"></canvas>
-			<canvas id="webgl2" class="webgl2 webgl" width="400" height="300"></canvas>
-			<video id="video3" class="videos3 not-attached" autoplay></video>
+			<video id="video2" class="videos2 remotevideo not-attached" data-id="2" autoplay></video>
+			<canvas id="overlay2" class="overlay2 remoteoverlay overlay" width="400" height="300"></canvas>
+			<canvas id="webgl2" class="webgl2 remotewebgl webgl" width="400" height="300"></canvas>
+
+			<video id="video3" class="videos3 not-attached" data-id="3" autoplay></video>
 			<canvas id="overlay3" class="overlay3 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl3" class="webgl3 webgl" width="400" height="300"></canvas>
-			<video id="video4" class="videos4 not-attached" autoplay></video>
+
+			<video id="video4" class="videos4 not-attached" data-id="4" autoplay></video>
 			<canvas id="overlay4" class="overlay4 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl4" class="webgl4 webgl" width="400" height="300"></canvas>
 
-			<video id="video5" class="videos5 not-attached" autoplay></video>
+			<video id="video5" class="videos5 not-attached" data-id="5" autoplay></video>
 			<canvas id="overlay5" class="overlay5 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl5" class="webgl5 webgl" width="400" height="300"></canvas>
-			<video id="video6" class="videos6 not-attached" autoplay></video>
+
+			<video id="video6" class="videos6 not-attached" data-id="6" autoplay></video>
 			<canvas id="overlay6" class="overlay6 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl6" class="webgl6 webgl" width="400" height="300"></canvas>
-			<video id="video7" class="videos7 not-attached" autoplay></video>
+
+			<video id="video7" class="videos7 not-attached" data-id="7" autoplay></video>
 			<canvas id="overlay7" class="overlay7 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl7" class="webgl7 webgl" width="400" height="300"></canvas>
-			<video id="video8" class="videos8 not-attached" autoplay></video>
+
+			<video id="video8" class="videos8 not-attached" data-id="8" autoplay></video>
 			<canvas id="overlay8" class="overlay8 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl8" class="webgl8 webgl" width="400" height="300"></canvas>
 
-			<video id="video9" class="videos9 not-attached" autoplay></video>
+			<video id="video9" class="videos9 not-attached" data-id="9" autoplay></video>
 			<canvas id="overlay9" class="overlay9 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl9" class="webgl9 webgl" width="400" height="300"></canvas>
-			<video id="video10" class="videos10 not-attached" autoplay></video>
+
+			<video id="video10" class="videos10 not-attached" data-id="10" autoplay></video>
 			<canvas id="overlay10" class="overlay10 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl10" class="webgl10 webgl" width="400" height="300"></canvas>
-			<video id="video11" class="videos11 not-attached" autoplay></video>
+
+			<video id="video11" class="videos11 not-attached" data-id="11" autoplay></video>
 			<canvas id="overlay11" class="overlay11 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl11" class="webgl11 webgl" width="400" height="300"></canvas>
-			<video id="video12" class="videos12 not-attached" autoplay></video>
+
+			<video id="video12" class="videos12 not-attached" data-id="12" autoplay></video>
 			<canvas id="overlay12" class="overlay12 overlay" width="400" height="300"></canvas>
 			<canvas id="webgl12" class="webgl12 webgl" width="400" height="300"></canvas>
 		</import>

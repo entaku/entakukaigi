@@ -1,0 +1,9 @@
+<ul>
+  <% @rooms.each do |room_id| %>
+    <li>
+      <a href="<%= static_path("rooms.show", id: room_id) %>">
+        <%= room_id.sub!(/\Arooms:/, "") %>
+      </a>
+    </li>
+  <% end %>
+</ul>
