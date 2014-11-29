@@ -4,7 +4,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require(:default, :test, :assets, :development, :rake, ENV['RACK_ENV'].to_sym, :migration, :raketask)
 require 'sinatra/base'
-require 'sinatra/activerecord'
+# require 'sinatra/activerecord'
 # require 'sinatra/contrib'
 begin
   require './config/boot.rb'
@@ -19,7 +19,7 @@ RSpec::Core::RakeTask.new(:spec)
 # DB_CONFIG = YAML.load_file('config/database.yml')[ENV['RACK_ENV']]
 # Foreigner.load
 
-require "sinatra/activerecord/rake"
+# require "sinatra/activerecord/rake"
 
 # Make sure all your models are loaded.
 

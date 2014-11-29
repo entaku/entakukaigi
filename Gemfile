@@ -5,10 +5,10 @@ gem 'sinatra', require: false
 
 ## rails
 rails_version = '~> 4.1.8'
-gem 'activerecord', rails_version, require: 'active_record'#, github: 'rails/rails'
-gem 'activesupport', rails_version, require: ['active_support/core_ext', 'active_support/inflector']
+# gem 'activerecord', rails_version, require: 'active_record'#, github: 'rails/rails'
+# gem 'activesupport', rails_version, require: ['active_support/core_ext', 'active_support/inflector']
 # gem 'actionmailer', rails_version, require: 'action_mailer'
-gem 'actionpack', rails_version, require: false
+# gem 'actionpack', rails_version, require: false
 
 # gem 'active_model_serializers', require: false
 # gem 'postgres_ext-serializers', require: 'postgres_ext/serializers'
@@ -18,8 +18,8 @@ gem 'actionpack', rails_version, require: false
 ## cache
 gem 'hiredis'
 gem 'redis', require: ['redis/connection/hiredis', 'redis']
-gem 'redis-store', require: false
-gem 'redis-activesupport', require: false
+# gem 'redis-store', require: false
+# gem 'redis-activesupport', require: false
 
 gem 'uuid'
 # image
@@ -38,29 +38,29 @@ gem 'rack_csrf', require: false
 gem 'sinatra-flash', require: false
 # gem 'sinatra-partial', require: false
 gem 'sinatra-contrib', require: false
-gem 'sinatra-formhelpers', require: false
+# gem 'sinatra-formhelpers', require: false
 
 
-# database
-platform :ruby do
-  ## database
-  group :development, :staging, :production do
-    # gem 'mysql2'
-    # gem 'pg'
-  end
-  group :test do
-    gem 'sqlite3'
-  end
-end
-platform :jruby do
-  ## database
-  # gem 'activerecord-jdbc-adapter'
-  # gem 'jdbc-postgres'
-  gem 'activerecord-jdbcpostgresql-adapter'
-  group :development, :test do
-    gem 'activerecord-jdbcsqlite3-adapter'
-  end
-end
+# # database
+# platform :ruby do
+#   ## database
+#   group :development, :staging, :production do
+#     # gem 'mysql2'
+#     # gem 'pg'
+#   end
+#   group :test do
+#     gem 'sqlite3'
+#   end
+# end
+# platform :jruby do
+#   ## database
+#   # gem 'activerecord-jdbc-adapter'
+#   # gem 'jdbc-postgres'
+#   gem 'activerecord-jdbcpostgresql-adapter'
+#   group :development, :test do
+#     gem 'activerecord-jdbcsqlite3-adapter'
+#   end
+# end
 
 ## JSON and API
 gem 'oj', platforms: :ruby
@@ -82,9 +82,9 @@ gem 'i18n'
 gem 'foreigner', require: false
 
 ## views
-gem 'rabl'#, require: false#, '~> 0.8.6'
+# gem 'rabl'#, require: false#, '~> 0.8.6'
 
-gem 'will_paginate', require: ['will_paginate', 'will_paginate/active_record']
+# gem 'will_paginate', require: ['will_paginate', 'will_paginate/active_record']
 # gem 'airbrake', '3.1.14', require: false
 
 platform :ruby do

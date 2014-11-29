@@ -1,7 +1,6 @@
 require "./config/setup"
 
 require "sinatra/base"
-require "will_paginate/view_helpers/sinatra"
 
 class MsgPackSerializer < Rack::Session::Cookie::Base64
 
@@ -37,11 +36,11 @@ class SinatraBase < Sinatra::Base
   end
 
   configure :development do
-    require "bullet"
-    Bullet.enable = true
-    Bullet.console = true
-    Bullet.bullet_logger = true
-    use Bullet::Rack
+    # require "bullet"
+    # Bullet.enable = true
+    # Bullet.console = true
+    # Bullet.bullet_logger = true
+    # use Bullet::Rack
     set :reload_templates, true
   end
 

@@ -3,17 +3,15 @@
 require "action_dispatch"
 require "rack/csrf"
 require "sinatra/flash"
-require "sinatra/multi_route"
-require "sinatra/namespace"
+# require "sinatra/multi_route"
+# require "sinatra/namespace"
 
 class StaticBase < SinatraBase
-  register WillPaginate::Sinatra
+  # register WillPaginate::Sinatra
 
-  # helpers Kaminari::Helpers::SinatraHelpers
-
-  register Sinatra::MultiRoute
+  # register Sinatra::MultiRoute
   register Sinatra::Flash
-  register Sinatra::Namespace
+  # register Sinatra::Namespace
   # use Rack::Csrf, raise: true, skip: ["DELETE:/*"]
 
   enable :method_override
