@@ -4,39 +4,39 @@ KEY =
   UP: 38
   DOWN: 40
 class jThreeRendererBase
-  constructor: (js) ->
-    @j3 = js
+  constructor: (j3) ->
+    @j3 = j3
     @scene = @j3("scene")
     @head = @j3("head")
 
   init: ->
     @_trackball()
-    @_bindKeyup()
+    @_bindKey()
+
+  close: -> @j3(window).unbind()
 
   _trackball :-> @j3.Trackball()
 
   _setupCamera: (x, y, z)->
-    @j3("#camera").css "position", x + " " + y + " " + z
+    @camera ||= @j3("#camera")
+    @x = x
+    @y = y
+    @z = z
+    @camera.css "position", x + " " + y + " " + z
 
-  _bindKeyup: ->
-    @j3("body").on "keyup", (e) =>
-      lookAt = @j3("#camera").css("lookat")
-      $containerImg = $("#container img")
-      switch e.which
-        when KEY.RIGHT
-          @j3("#camera").css "lookAt", lookAt[0] + 0.5 + " " + lookAt[1] + " " + lookAt[2]
-        when KEY.LEFT
-          $containerImg.stop().animate
-            left: "-=10px"
-          , 100
-        when KEY.UP
-          $containerImg.stop().animate
-            top: "-=10px"
-          , 100
-        when KEY.DOWN
-          $containerImg.stop().animate
-            top: "+=10px"
-          , 100
+  _bindKey: ->
+    @j3(window).on "keydown", (e) =>
+      if @camera
+        switch e.which
+          when KEY.RIGHT
+            @x += 0.5
+          when KEY.LEFT
+            @x -= 0.5
+          when KEY.UP
+            @z += 0.5
+          when KEY.DOWN
+            @z -= 0.5
+        @camera.css "lookAt", @x + " " + @y + " " + @z
 
 class jThreeRenderer extends jThreeRendererBase
   init: ->
