@@ -1,0 +1,17 @@
+{
+  "name": "Entakukagi",
+  "description": "Entakukagi",
+  "website": "https://github.com/entaku/entakukaigi",
+  "repository": "https://github.com/entaku/entakukaigi",
+  "success_url": "/",
+  "env": {
+    "HEROKU": "t",
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "3"
+    }
+  },
+  "addons": [
+    "redistogo"
+  ]
+}
