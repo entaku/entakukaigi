@@ -77,6 +77,7 @@ end
   "../app/helpers",
   "../app/controllers",
   "../app/controllers/static",
+  "../app/controllers/api/v1",
   "initializers/after"
 ].each do |m|
   Dir[File.expand_path("../#{m}/*.rb", __FILE__)].each do |file|

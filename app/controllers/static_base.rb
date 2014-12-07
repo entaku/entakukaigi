@@ -1,18 +1,10 @@
 # encoding: utf-8
-# require 'sinatra/namespace'
 require "action_dispatch"
 require "rack/csrf"
 require "sinatra/flash"
-# require "sinatra/multi_route"
-# require "sinatra/namespace"
 
 class StaticBase < SinatraBase
-  # register WillPaginate::Sinatra
-
-  # register Sinatra::MultiRoute
   register Sinatra::Flash
-  # register Sinatra::Namespace
-  # use Rack::Csrf, raise: true, skip: ["DELETE:/*"]
 
   enable :method_override
 
@@ -43,7 +35,6 @@ class StaticBase < SinatraBase
 
   helpers BaseHelper
   helpers StaticHelper
-  # helpers PaginateHelper
   helpers URLHelper
 
   def render_errors(errors)

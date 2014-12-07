@@ -29,6 +29,10 @@ if ENV['RACK_ENV'] == "development"
   end
 end
 
+map '/api/v1' do
+  run Api::V1.new
+end
+
 map '/' do
   run Static::Api.new
 end

@@ -13,6 +13,10 @@ class Room < Struct.new(:id)
     $redis.smembers redis_key
   end
 
+  def is_member?(user_id)
+     $redis.sismember redis_key, user_id
+  end
+
   def add!(user_id)
     $redis.sadd redis_key, user_id
   end
@@ -33,7 +37,7 @@ class Room < Struct.new(:id)
   private
 
       def redis_key
-        "rooms:#{@id}"
+        "rooms:#{self.id}"
       end
 
 end

@@ -1,11 +1,7 @@
 # encoding: utf-8
 module AppHelper
 
-  if RUBY_PLATFORM == "java"
-    ENCODER = MultiJson
-  else
-    ENCODER = Oj
-  end
+  ENCODER = MultiJson
   MSGPACK_ENCODER = ::MessagePack
 
   def set_content_type
