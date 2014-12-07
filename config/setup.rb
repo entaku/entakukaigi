@@ -10,6 +10,7 @@ require 'logger'
 
 
 unless defined? APP_CONFIG
+  require "yaml"
   APP_CONFIG = YAML.load_file('config/app_config.yml')[ENV['RACK_ENV']]
   APP_CONFIG.freeze
 end

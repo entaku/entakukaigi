@@ -7,7 +7,7 @@ require 'bundler'
 Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 
 if RUBY_PLATFORM != "java" && %w(staging production).include?(ENV['RACK_ENV'])
-  if ENV['PUMA'].nil?
+  if ENV['PUMA'].nil? && ENV["REDISTOGO_URL"] == nil
     require 'gctools/oobgc'
     if defined?(Unicorn::HttpRequest)
       use GC::OOB::UnicornMiddleware
