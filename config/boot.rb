@@ -71,7 +71,7 @@ end
 [
   "initializers/before",
   "initializers",
-  "../lib/utils",
+  # "../lib/utils",
   "../app/services",
   "../app/models",
   "../app/helpers",

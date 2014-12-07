@@ -22,6 +22,11 @@ if ENV['RACK_ENV'] == "development"
     urls: ["/fonts", "/images", "/goml", "/base", "/ckeditor"],
     root: "public"
 end
+if ENV["REDISTOGO_URL"] != nil
+  use Rack::Static,
+    urls: ["/fonts", "/images", "/goml", "/base", "/ckeditor", "/assets"],
+    root: "public"
+end
 
 if ENV['RACK_ENV'] == "development"
   map '/assets' do
