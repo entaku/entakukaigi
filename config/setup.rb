@@ -28,8 +28,16 @@ LOGGER.level = log_level
 
 # ActiveRecord::Base.logger = LOGGER
 # ActiveRecord::Base.logger.level = Logger::INFO
-
-$redis = Redis.new \
-  host:   APP_CONFIG["redis"]["host"],
-  port:   APP_CONFIG["redis"]["port"],
-  driver: :hiredis
+$redis = if ENV["REDISTOGO_URL"] != nil
+  uri = URI.parse(ENV["REDISTOGO_URL"])
+  Redis.new \
+    host:     uri.host,
+    port:     uri.port,
+    password: uri.password,
+    driver:   :hiredis
+else
+  Redis.new \
+    host:   APP_CONFIG["redis"]["host"],
+    port:   APP_CONFIG["redis"]["port"],
+    driver: :hiredis
+end
