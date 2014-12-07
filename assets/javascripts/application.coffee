@@ -6,7 +6,8 @@
 #= require ../vendor/toastr/toastr.js
 #= require ../vendor/peerjs/peer.js
 
-#= require_tree ./services
+#= require_tree ./const
+#= require_tree ./utils
 
 #= require .//models/masks.js
 
@@ -27,7 +28,10 @@
 #= require .//media/mossefilter.js
 #= require .//media/Stats.js
 #= require .//media/face_deformer.js
-#= require .//facedetector
+#= require .//services/facedetector
+#= require .//services/jthree
+#= require .//services/voice_changer
+#= require .//services/peer_manager
 
 #= require .//init
 

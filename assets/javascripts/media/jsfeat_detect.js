@@ -11,12 +11,12 @@ var jsfeat_face = function(image) {
   if (image.tagName == 'VIDEO' || image.tagName == 'IMG') {
     work_canvas = document.createElement('canvas');
     if (h === 0) {
-      work_canvas.height = 300;
+      work_canvas.height = CONFIG.VIDEO.H;
     } else {
       work_canvas.height = h;
     }
     if (w === 0) {
-      work_canvas.width = 400;
+      work_canvas.width = CONFIG.VIDEO.W;
     } else {
       work_canvas.width = w;
     }
@@ -37,10 +37,10 @@ var jsfeat_face = function(image) {
       work_ctx.drawImage(image, 0, 0);
     }
     if (h === 0) {
-      h = 300;
+      h = CONFIG.VIDEO.H;
     }
     if (w === 0) {
-      w = 400;
+      w = CONFIG.VIDEO.W;
     }
     var imageData = work_ctx.getImageData(0, 0, w, h);
 

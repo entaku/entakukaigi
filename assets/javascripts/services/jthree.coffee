@@ -38,12 +38,14 @@ class jThreeRendererBase
             @z -= 0.5
         @camera.css "lookAt", @x + " " + @y + " " + @z
 
-class jThreeRenderer extends jThreeRendererBase
-  init: ->
+class @jThreeRenderer extends jThreeRendererBase
+  init: (fn)->
     super()
     @_setup()
-    @_setupPeerManager()
+    window.importHTML = jThree("import").contents()
+    fn() if fn
 
+  # private
   _setup: ->
     degree = 0
     x = 0
@@ -74,8 +76,8 @@ class jThreeRenderer extends jThreeRendererBase
   _textureEl: (i) ->
     """
     <txr id="video_texture#{i}" video="#video#{i}" param="" />
-    <txr id="overlay_texture#{i}" canvas="#overlay#{i}" animation="true" param="repeat:1;wrap:2;width:400;height:300;" />
-    <txr id="webgl_texture#{i}" canvas="#webgl#{i}" animation="true" param="repeat:1;wrap:2;width:400;height:300;" />
+    <txr id="overlay_texture#{i}" canvas="#overlay#{i}" animation="true" param="repeat:1;wrap:2;width:#{CONFIG.VIDEO.W};height:#{CONFIG.VIDEO.H};" />
+    <txr id="webgl_texture#{i}" canvas="#webgl#{i}" animation="true" param="repeat:1;wrap:2;width:#{CONFIG.VIDEO.W};height:#{CONFIG.VIDEO.H};" />
     """
 
   _materialEl: (i) ->
@@ -98,43 +100,3 @@ class jThreeRenderer extends jThreeRendererBase
     <mesh id="" class="face" geo="#plainol_geo" mtl="#overlay_mtl#{i}" style="position: #{position2}; rotateY: #{objDegree}; scaleX: 0.01;"></mesh>
     <mesh id="" class="face" geo="#plainwebgl_geo" mtl="#webgl_mtl#{i}" style="position: #{position2}; rotateY: #{objDegree}; scaleX: 0.01;"></mesh>
     """
-
-  _setupPeerManager: ->
-    window.importHTML = jThree("import").contents()
-    @peerManager = new PeerManager(ROOM_ID)
-
-# on ready
-jThree ((j3) ->
-  renderer = new jThreeRenderer(j3)
-  renderer.init()
-
-  milkcocoa = new MilkCocoa("https://io-ni2re3bq2.mlkcca.com:443/")
-  messageDataStore = milkcocoa.dataStore("messages")
-
-  query = messageDataStore.query().limit(20).sort('desc').done((list)->
-    _.each list.reverse(), (data)->
-      p = jQuery "<p></p>"
-      p.text data["message"]
-      jQuery("#display_area").append p
-  )
-
-
-  jQuery("#message_area").on "keypress", (e) ->
-    if e.keyCode is 13
-      messageDataStore.push
-        message: jQuery(this).val()
-        date: new Date()
-      , (data)->
-      jQuery(this).val ""
-    return
-
-  messageDataStore.on "push", (event) ->
-    jQuery("#display_area p:first").remove()  if jQuery("#display_area p").size() > 10
-    p = jQuery "<p></p>"
-    p.text event.value["message"]
-    jQuery("#display_area").append p
-    return
-
-), ->
-  alert "このブラウザはWebGLに対応していません。"
-  return

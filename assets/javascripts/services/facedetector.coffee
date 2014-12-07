@@ -1,31 +1,27 @@
-MASK_LENGTH = 7
+MASK_LENGTH = Object.keys(masks).length
 getRandom = (min, max) ->
   min + Math.floor(Math.random() * (max - min + 1))
 
 class @FaceDetector
-  constructor: (video, overlay, webgl, remote = false) ->
-    # console.log "hgoehogheo"
-    # console.log video
-    # console.log overlay
-    # console.log webgl
-    # console.log clm
-    # console.log pModel
+  constructor: (video, overlay, webgl, remote = false, defaultWidth = CONFIG.VIDEO.W, defaultHeight = CONFIG.VIDEO.H) ->
     @first = true
     @remote = remote
-    video.width = 400 if video.width == 0
-    video.height = 300 if video.height == 0
+
+    video.width = defaultWidth if video.width == 0
+    video.height = defaultHeight if video.height == 0
     @video = video
     @ctrack = new clm.tracker()
     @ctrack.init pModel
     @fd = new faceDeformer()
 
-    webgl.width = video.width
-    webgl.height = video.height
+    @webgl = webgl
+    @webgl.width = video.videoWidth || video.width
+    @webgl.height = video.videoHeight || video.height
 
-    @fd.init webgl
+    @fd.init @webgl
     @overlay = overlay
-    @overlay.width = video.width
-    @overlay.height = video.height
+    @overlay.width = video.videoWidth || video.width
+    @overlay.height = video.videoHeight || video.height
     @overlayCC = @overlay.getContext("2d")
     @currentMask = getRandom(0, MASK_LENGTH - 1)
     @startVideo()
@@ -35,7 +31,6 @@ class @FaceDetector
     return
   switchMasks: ->
     # get mask
-    console.log "switchMasks" if @remote
     maskname = Object.keys(masks)[@currentMask]
     @fd.load $(window.importHTML.find("#"+maskname))[0], masks[maskname], pModel
     return
@@ -55,7 +50,7 @@ class @FaceDetector
     @ctrack.draw @overlay  if positions
     # check whether mask has converged
     pn = @ctrack.getConvergence()
-    if pn < 0.4# || (initial && @remote)
+    if pn < 0.4
       @switchMasks()
       requestAnimFrame @drawMaskLoop.bind(this)
     else
@@ -64,21 +59,16 @@ class @FaceDetector
   drawMaskLoop: ->
     # get position of face
     positions = @ctrack.getCurrentPosition(@video)
-    #console.log "pos", positions
-    @overlayCC.clearRect 0, 0, 400, 300
+    @overlayCC.clearRect 0, 0, @video.videoWidth, @video.videoHeight
     # draw mask on top of face
     if positions
-      # window.firstPosition = positions
       @fd.draw positions
       @first = false
-    # if @remote && @first
-    #   console.log "draw"
-    #   @first = false
-    #   @fd.draw window.firstPosition
     animationRequest = requestAnimFrame(@drawMaskLoop.bind(this))
     return
-  # TODO
   close: ->
+    @ctrack.stop()
+    @fd.clear()
 
 document.addEventListener "clmtrackrIteration", ((event) ->
 ), false
