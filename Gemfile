@@ -8,7 +8,7 @@ rails_version = '~> 4.1.8'
 # gem 'activerecord', rails_version, require: 'active_record'#, github: 'rails/rails'
 # gem 'activesupport', rails_version, require: ['active_support/core_ext', 'active_support/inflector']
 # gem 'actionmailer', rails_version, require: 'action_mailer'
-# gem 'actionpack', rails_version, require: false
+gem 'actionpack', rails_version, require: false
 
 # gem 'active_model_serializers', require: false
 # gem 'postgres_ext-serializers', require: 'postgres_ext/serializers'

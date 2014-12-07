@@ -27,6 +27,7 @@ Spork.prefork do
     add_filter "/db/"
     add_filter "/config/initializers"
   end
+  require "action_dispatch"
   require "./config/boot.rb"
   # if ActiveRecord::Migrator.needs_migration?
   #   ActiveRecord::Migrator.migrate(File.join(File.dirname(__FILE__), '../db/migrate'))
