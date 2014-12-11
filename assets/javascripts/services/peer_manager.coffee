@@ -48,7 +48,8 @@ class @PeerManagerFactory
     #   @remoteCall.close() if @remoteCall
 
     call: ->
-      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia
+      MediaStream = window.MediaStream or window.webkitMediaStream
       # videoOption =
       #   mandatory:
       #     maxWidth: CONFIG.VIDEO.W
@@ -58,7 +59,7 @@ class @PeerManagerFactory
       navigator.getUserMedia {video: true, audio: true}, (stream) =>
         # console.log "window.videos", window.videos
         voiceStream = tweakVoice stream
-        window.localStream = new webkitMediaStream([voiceStream.getAudioTracks()[0], stream.getVideoTracks()[0]])
+        window.localStream = new MediaStream([voiceStream.getAudioTracks()[0], stream.getVideoTracks()[0]])
 
         myVideo = $(window.importHTML.find(".myvideo"))
         myOverlay = $(window.importHTML.find(".myoverlay"))
