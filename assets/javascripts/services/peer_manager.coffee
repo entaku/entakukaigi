@@ -57,21 +57,23 @@ class @PeerManagerFactory
       #     minHeight: CONFIG.VIDEO.H
       navigator.getUserMedia {video: true, audio: true}, (stream) =>
         # console.log "window.videos", window.videos
+        voiceStream = tweakVoice stream
+        window.localStream = new webkitMediaStream([voiceStream.getAudioTracks()[0], stream.getVideoTracks()[0]])
+
         myVideo = $(window.importHTML.find(".myvideo"))
         myOverlay = $(window.importHTML.find(".myoverlay"))
         myWebgl = $(window.importHTML.find(".mywebgl"))
         myVideo.attr
-          src: URL.createObjectURL(stream)
+          src: URL.createObjectURL(window.localStream)
         myVideo[0].muted = true
         myVideo.addClass("attached").removeClass("not-attached")
-        window.localStream = stream
         fd = new FaceDetector(myVideo[0], myOverlay[0], myWebgl[0])
         @_getTargetIDs()
         .done (targetIDs) =>
           if typeof targetIDs != "undefined"
             for id in targetIDs
               # @targetIDs.push targetID
-              @myCalls[id] = @peer.call(id, stream)
+              @myCalls[id] = @peer.call(id, window.localStream)
               @_setRemoteConnection @myCalls[id], id
       , (error) ->
         console.error "getUserMedia err", error
